@@ -1,0 +1,26 @@
+{
+  "name": "windowsbackgroundswitcher",
+  "version": "1.0.0",
+  "description": "Projeto que troca a imagem de background do windows de tempos em tempos",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LeandroLS/WindowsBackgroundSwitcher.git"
+  },
+  "author": "Leandro Lima",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LeandroLS/WindowsBackgroundSwitcher/issues"
+  },
+  "homepage": "https://github.com/LeandroLS/WindowsBackgroundSwitcher#readme",
+  "dependencies": {
+    "inquirer": "^6.3.1"
+  },
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-config-google": "^0.13.0"
+  }
+}
