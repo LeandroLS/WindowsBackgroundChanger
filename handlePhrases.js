@@ -2,6 +2,24 @@
 const fs = require("fs");
 var inquirer = require("inquirer");
 console.log("Olá, bem vindo ao WindowsBackGroundSwitcher! :D");
+
+function writePhraseFile(phrase = null){
+    try{
+        fs.writeFileSync("./phrases.txt", JSON.stringify({phrases:phrase}));
+        console.log('Frase gravada no arquivo.');
+    } catch(err){
+        console.log('Algo deu errado. Não foi possível gravar o conteúdo do arquivo.');
+    }
+}
+function readPhrasesFile(){
+    try {
+        let fileContent = fs.readFileSync("./phrases.txt", "utf8");
+        return JSON.parse(fileContent);
+    } catch (error) {
+        console.log('Algo deu errado. Não foi possível ler o conteúdo do arquivo.');
+    }
+}
+
 let questions = [
     {
         type: "list",
@@ -13,11 +31,13 @@ let questions = [
 
 inquirer.prompt(questions).then(answers => {
     if(answers.whatYouWant == "Adicionar frase"){
-        addFraseQuestions();
+        addPhrase();
+    } else if(answers.whatYouWant == "Remover frase"){
+        removePhrase();
     }
 });
 
-function addFraseQuestions(){
+async function addPhrase(){
     let questions = [
         {
             type: "input",
@@ -26,14 +46,25 @@ function addFraseQuestions(){
         }
     ];
     inquirer.prompt(questions).then(answers => {
-        fs.readFile("./phrases.txt", { encoding:"utf-8", flag:"r"}, (err, data) => {
-            /** Se não consequir ler o arquivo é porque não existe, cria um novo */
-            if(err){
-                fs.writeFile("./phrases.txt", "olá, sou novo", (err) => {
-                    if(err) throw err;
-                    console.log("arquivo salvo");
-                });
-            }
-        });
+        let phrasesArray = readPhrasesFile();
+        if(phrasesArray == undefined){
+            writePhraseFile([answers.phrase]);
+        } else {
+            phrasesArray.phrases.push(answers.phrase);
+            writePhraseFile(phrasesArray.phrases);
+        }
     });
+}
+
+function removePhrase(){
+    let phrasesArray = readPhrasesFile();
+    let questions = [
+        {
+            type: "list",
+            name: "phraseToRemove",
+            message: "Qual frase ?",
+            choices: phrasesArray.phrases
+        }
+    ];
+    inquirer.prompt(questions).then(answers => console.log(answers));
 }
