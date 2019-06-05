@@ -37,7 +37,7 @@ inquirer.prompt(questions).then(answers => {
             }
         ];
         inquirer.prompt(questions).then((answers) => {
-            fileHandler.removePhrase(phrasesArray, answers.phraseToRemove);
+            fileHandler.removePhrase(answers.phraseToRemove);
         });
     } else if(answers.whatYouWant == "Editar frase"){
         let phrasesArray = fileHandler.readPhrasesFile();

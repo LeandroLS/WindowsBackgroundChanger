@@ -18,6 +18,9 @@ module.exports = {
             console.log("Algo deu errado. Não foi possível ler o conteúdo do arquivo.");
         }
     },
+    /**
+     * @param {string} phrase
+     */
     addPhrase(phrase){
         let phrasesArray = this.readPhrasesFile();
         if(phrasesArray == undefined){
@@ -27,7 +30,11 @@ module.exports = {
             this.writePhraseFile(phrasesArray.phrases);
         }
     },
-    removePhrase(phrasesArray, phraseToRemove){
+    /**
+     * @param {string} phraseToRemove 
+     */
+    removePhrase(phraseToRemove){
+        let phrasesArray = this.readPhrasesFile();
         let newPhrasesArray = phrasesArray.phrases.filter(function(value){
             if(value != phraseToRemove){
                 return value;
