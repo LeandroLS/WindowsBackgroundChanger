@@ -1,9 +1,10 @@
 const fs = require("fs");
 const PHRASESFILE = "./phrases.txt";
 module.exports = {
+    phrasesfile: PHRASESFILE,
     writePhraseFile(phrase = null){
         try{
-            fs.writeFileSync(PHRASESFILE, JSON.stringify({phrases:phrase}));
+            fs.writeFileSync(this.phrasesfile, JSON.stringify({phrases:phrase}));
             console.log("Arquivo de frases atualizado.");
         } catch(err){
             console.log("Algo deu errado. Não foi possível gravar o conteúdo do arquivo.");
@@ -11,7 +12,7 @@ module.exports = {
     },
     readPhrasesFile(){
         try {
-            let fileContent = fs.readFileSync(PHRASESFILE, "utf8");
+            let fileContent = fs.readFileSync(this.phrasesfile, "utf8");
             return JSON.parse(fileContent);
         } catch (error) {
             console.log("Algo deu errado. Não foi possível ler o conteúdo do arquivo.");

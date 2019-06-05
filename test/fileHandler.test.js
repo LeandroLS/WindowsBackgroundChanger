@@ -1,5 +1,6 @@
 let expect = require('chai').expect
 let fileHandler = require('../fileHandler');
+fileHandler.phrasesfile = './testmochaphrases.txt'
 describe('fileHandler', function () {
     describe('writePhraseFile()', function () {
         it('should write/create a file', function () {
