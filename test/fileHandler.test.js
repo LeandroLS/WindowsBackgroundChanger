@@ -24,13 +24,23 @@ describe('fileHandler', function () {
             expect(phrasesArray.phrases).to.be.an('array').that.include("teste addPhrase");
         })
     });
-    describe('removePhrase()', function(){
-        it('should remove phrase in phrases file', function(){
-            fileHandler.removePhrase("teste addPhrase");
+    describe('editPhrase()', function(){
+        it('should edit a phrase in phrases file', function(){
+            fileHandler.editPhrase("teste addPhrase", "teste editPhrase");
             let phrasesArray = fileHandler.readPhrasesFile();
             expect(phrasesArray).to.be.an('object').to.have.property('phrases');
             expect(phrasesArray.phrases).to.be.an('array');
             expect(phrasesArray.phrases).to.be.an('array').that.not.include("teste addPhrase");
+            expect(phrasesArray.phrases).to.be.an('array').that.include("teste editPhrase");
+        })
+    });
+    describe('removePhrase()', function(){
+        it('should remove phrase in phrases file', function(){
+            fileHandler.removePhrase("teste editPhrase");
+            let phrasesArray = fileHandler.readPhrasesFile();
+            expect(phrasesArray).to.be.an('object').to.have.property('phrases');
+            expect(phrasesArray.phrases).to.be.an('array');
+            expect(phrasesArray.phrases).to.be.an('array').that.not.include("teste editPhrase");
         })
     });
 });

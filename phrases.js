@@ -2,24 +2,20 @@
 let inquirer = require("inquirer");
 let fileHandler = require("./fileHandler");
 console.log("Olá, bem vindo ao WindowsBackGroundSwitcher! :D");
-let questions = [
-    {
+let questions = [{
         type: "list",
         name: "whatYouWant",
         message: "O que deseja fazer ?",
         choices: ["Adicionar frase", "Remover frase", "Editar frase"]
-    }
-];
+    }];
 
 inquirer.prompt(questions).then(answers => {
     if(answers.whatYouWant == "Adicionar frase"){
-        let questions = [
-            {
+        let questions = [{
                 type: "input",
                 name: "phrase",
                 message: "Qual frase ?",
-            }
-        ];
+            }];
         inquirer.prompt(questions).then(answers => {
             fileHandler.addPhrase(answers.phrase);
         });
@@ -28,14 +24,12 @@ inquirer.prompt(questions).then(answers => {
         if(!phrasesArray){
             return console.log("Não há frases para remover.");
         }
-        let questions = [
-            {
+        let questions = [{
                 type: "list",
                 name: "phraseToRemove",
                 message: "Qual frase ?",
                 choices: phrasesArray.phrases
-            }
-        ];
+            }];
         inquirer.prompt(questions).then((answers) => {
             fileHandler.removePhrase(answers.phraseToRemove);
         });
@@ -44,16 +38,21 @@ inquirer.prompt(questions).then(answers => {
         if(!phrasesArray){
             return console.log("Não há frases para editar.");
         }
-        let questions = [
-            {
+        let questions = [{
                 type: "list",
                 name: "phraseToEdit",
                 message: "Qual frase ?",
                 choices: phrasesArray.phrases
-            }
-        ];
-        inquirer.prompt(questions).then((answers) => {
-            fileHandler.updatePhrase(phrasesArray, answers.phraseToEdit);
+            }];
+        inquirer.prompt(questions).then((phraseToEdit) => {
+            let questions = [{
+                    type: "input",
+                    name: "newPhrase",
+                    message: "Qual a nova frase ?",
+                }];
+            inquirer.prompt(questions).then((newPhrase) => {
+                fileHandler.editPhrase(phraseToEdit.phraseToEdit, newPhrase.newPhrase);
+            });
         });
     }
 });

@@ -42,11 +42,17 @@ module.exports = {
         });
         this.writePhraseFile(newPhrasesArray);
     },
-    updatePhrase(phraseToUpdate, newPhrase){
-        let newPhrasesArray = phrasesArray.phrases.filter(function(value){
-            if(value == phraseToUpdate){
-                return value;
+    /**
+     * @param {string} phraseToEdit 
+     * @param {string} newPhrase 
+     */
+    editPhrase(phraseToEdit, newPhrase){
+        let phrasesArray = this.readPhrasesFile();
+        let newPhrasesArray = phrasesArray.phrases.map(function(frase){
+            if(frase == phraseToEdit){
+                frase = newPhrase;
             }
+            return frase;
         });
         this.writePhraseFile(newPhrasesArray);
     }
