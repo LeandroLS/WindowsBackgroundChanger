@@ -1,7 +1,7 @@
 "use stric";
 let inquirer = require("inquirer");
 let fileHandler = require("./fileHandler");
-console.log("Olá, bem vindo ao WindowsBackGroundSwitcher! :D");
+console.log("Hello, wellcome to WindowsBackGroundChanger! :D");
 let questions = [{
         type: "list",
         name: "whatYouWant",

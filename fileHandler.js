@@ -5,9 +5,9 @@ module.exports = {
     writePhraseFile(phrase = null){
         try{
             fs.writeFileSync(this.phrasesfile, JSON.stringify({phrases:phrase}));
-            console.log("Arquivo de frases atualizado.");
+            console.log("Phrase file updated.");
         } catch(err){
-            console.log("Algo deu errado. Não foi possível gravar o conteúdo do arquivo.");
+            console.log("Something gone wrong. Don't was possible to write content in phrase file.");
         }
     },
     readPhrasesFile(){
@@ -15,7 +15,7 @@ module.exports = {
             let fileContent = fs.readFileSync(this.phrasesfile, "utf8");
             return JSON.parse(fileContent);
         } catch (error) {
-            console.log("Algo deu errado. Não foi possível ler o conteúdo do arquivo.");
+            console.log("Something gone wrong. Don't was possible to read the content of phrase file.");
         }
     },
     /**

@@ -1,7 +1,7 @@
 {
-  "name": "windowsbackgroundswitcher",
+  "name": "windowsbackgroundchanger",
   "version": "1.0.0",
-  "description": "Projeto que troca a imagem de background do windows de tempos em tempos",
+  "description": "Project that change the windows background image in a determined time.",
   "main": "index.js",
   "scripts": {
     "test": "mocha"
