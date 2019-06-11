@@ -1,0 +1,1 @@
+{"phrases":["add/edit phrases runing 'node phrases.js' inside windows background switcher"]}
