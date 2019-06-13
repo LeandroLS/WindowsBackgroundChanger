@@ -18,21 +18,20 @@ function getRandomIndexArray(randomNumber, arrLength){
 }
 /** Necessary to make "shadow effect" with a hack */
 function writeOnImage(image, font, phrase){
-    let timesToWrite = 2;
-    for (let index = 0; index < timesToWrite; index++) {
-        image.print(font[0], index, 1, {
+    let yAxis = [1,7,4];
+    var font = font;
+    yAxis.forEach(function(element,index, arr) {
+        var fontToWrite = font.fontBlack;
+        if(element == 4){
+            fontToWrite = font.fontWhite;
+        }
+        image.print(fontToWrite, element, 1, {
             text : phrase,
             alignmentX: Jimp.HORIZONTAL_ALIGN_CENTER,
             alignmentY: Jimp.VERTICAL_ALIGN_MIDDLE,
             }, image.bitmap.width, image.bitmap.height
         );
-    }
-    image.print(font[1], 3, 1, {
-        text : phrase,
-        alignmentX: Jimp.HORIZONTAL_ALIGN_CENTER,
-        alignmentY: Jimp.VERTICAL_ALIGN_MIDDLE,
-        }, image.bitmap.width, image.bitmap.height
-    );
+    });
 }
 async function main(){
     let randomNumber = Math.random();
@@ -41,7 +40,7 @@ async function main(){
     let image = await Jimp.read('./images/' + arrImagesName[randomNumberArrImg]);
     let fontBlack = await Jimp.loadFont(Jimp.FONT_SANS_32_BLACK);
     let fontWhite = await Jimp.loadFont(Jimp.FONT_SANS_32_WHITE);
-    writeOnImage(image, [fontBlack, fontWhite], phrasesArray.phrases[randomNumberArrPhrases]);
+    writeOnImage(image, {fontBlack, fontWhite}, phrasesArray.phrases[randomNumberArrPhrases]);
     image.write('./images/imgwrite.jpeg');
     await wallpaper.set('./images/imgwrite.jpeg');
     console.log('Background image changed in', moment().format('hh:mm:ss'));
