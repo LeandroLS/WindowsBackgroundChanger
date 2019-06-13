@@ -3,6 +3,7 @@ Program that change the windows background image in a determined time with image
 
 ## How to start
 1. Open terminal, go to /path/to/WindowsBackgroundChanger
+3. run npm install
 2. node win-background-changer.js
 
 ### How to manipulate phrases
