@@ -9,7 +9,7 @@ if(arrImagesName.length <= 0){
     console.log("Don't have images in folder /images. Ending the program.");
     return;
 }
-const intervalInSeconds = 2;
+const intervalInSeconds = 900;
 const miliseconds = intervalInSeconds*1000;
 console.log('Started WindowsBackgroundChanger.');
 console.log('Interval in seconds to switch the background:', intervalInSeconds, 'seconds.');
